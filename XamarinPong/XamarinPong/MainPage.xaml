@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamarinPong"
+             x:Class="XamarinPong.MainPage">
+
+    <ContentPage.Resources>
+        <x:Double x:Key="paddleHeight">100</x:Double>
+        <x:Double x:Key="paddleWidthD">15</x:Double>
+        <GridLength x:Key="paddleWidthGL">15</GridLength>
+        <x:Double x:Key="scoreZoneWidthD">25</x:Double>
+        <GridLength x:Key="scoreZoneWidthGL">25</GridLength>
+    </ContentPage.Resources>
+
+    <Grid x:Name="playArea" BackgroundColor="Black">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource scoreZoneWidthGL}"/>
+            <ColumnDefinition Width="{StaticResource paddleWidthGL}"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="{StaticResource paddleWidthGL}"/>
+            <ColumnDefinition Width="{StaticResource scoreZoneWidthGL}"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <local:Paddle x:Name="leftPaddle" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" PaddleColor="Red" IsLeftPaddle="True"
+                 HeightRequest="{StaticResource paddleHeight}" WidthRequest="{StaticResource paddleWidthD}" TranslatedY="{Binding GameState.LeftPaddleYPos}"/>
+        <BoxView x:Name="ball" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Color="White" HeightRequest="10" WidthRequest="10" VerticalOptions="Center" HorizontalOptions="Center"
+                 TranslationX="{Binding GameState.BallXPos}" TranslationY="{Binding GameState.BallYPos}"/>
+        <local:Paddle x:Name="rightPaddle" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1" PaddleColor="Green" IsLeftPaddle="False"
+                 HeightRequest="{StaticResource paddleHeight}" WidthRequest="{StaticResource paddleWidthD}" TranslatedY="{Binding GameState.RightPaddleYPos}"/>
+
+    </Grid>
+
+</ContentPage>
